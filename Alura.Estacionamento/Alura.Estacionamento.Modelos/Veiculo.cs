@@ -1,5 +1,6 @@
 ﻿using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using System;
+using System.Text;
 
 namespace Alura.Estacionamento.Modelos
 {
@@ -81,6 +82,13 @@ namespace Alura.Estacionamento.Modelos
             this.VelocidadeAtual -= (tempoSeg * 15);
         }
 
+        public void AlterarDados(Veiculo veiculo)
+        {
+            Proprietario = veiculo.Proprietario;
+            Modelo = veiculo.Modelo;
+            Largura = veiculo.Largura;
+            Cor = veiculo.Cor;
+        }
 
         //Construtor
         public Veiculo()
@@ -91,6 +99,20 @@ namespace Alura.Estacionamento.Modelos
         public Veiculo(string proprietario)
         {
             Proprietario = proprietario;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine($"Ficha do Veiculo:");
+            stringBuilder.AppendLine($"Tipo do Veiculo: {Tipo}");
+            stringBuilder.AppendLine($"Proprietario: {Proprietario}");
+            stringBuilder.AppendLine($"Modelo: {Modelo}");
+            stringBuilder.AppendLine($"Cor: {Cor}");
+            stringBuilder.AppendLine($"Placa: {Placa}");
+
+            return stringBuilder.ToString();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Alura.Estacionamento.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
 {
@@ -76,6 +77,29 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
                 return "Não encontrado veículo com a placa informada.";
             }
             return informacao;
+        }
+
+        public Veiculo PesquisaVeiculo(string placa)
+        {
+            Veiculo veiculo = veiculos.Where(x => x.Placa == placa).FirstOrDefault();
+
+            if (veiculo is not null)
+                return veiculo;
+
+            return null;
+        }     
+
+        public Veiculo AlterarDadosVeiculo(string placa, Veiculo veiculoUpdate)
+        {
+            Veiculo veiculo = veiculos.Where(x => x.Placa == placa).FirstOrDefault();
+
+            if (veiculo is not null)
+            {
+                veiculo.AlterarDados(veiculoUpdate);
+                return veiculo;
+            }
+
+            return null;
         }
 
     }
