@@ -70,6 +70,8 @@ namespace Alura.Estacionamento.Modelos
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }
         public TipoVeiculo Tipo { get => _tipo; set => _tipo = value; }
+        public string IdTicket { get; set; }
+        public string Ticket { get; set; }
 
         //Métodos
         public void Acelerar(int tempoSeg)

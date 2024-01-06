@@ -51,17 +51,17 @@ namespace Alura.Estacionamento.Tests
         [Theory]
         [InlineData("André Silva", TipoVeiculo.Automovel, "Verde", "Fusca", "qwe-7894")]
         [InlineData("Ingriddy Santos", TipoVeiculo.Motocicleta, "Vermelho", "Yamaha", "hgf-3695")]
-        public void Localiza_Veiculo_No_Patio(string proprietario, TipoVeiculo tipo, string cor, string modelo, string placa)
+        public void Localiza_Veiculo_No_Patio_Com_Base_No_IdTicket(string proprietario, TipoVeiculo tipo, string cor, string modelo, string placa)
         {
             // Arrange
             Veiculo veiculo = new Veiculo { Proprietario = proprietario, Tipo = tipo, Cor = cor, Modelo = modelo, Placa = placa };
             _estacionamento.RegistrarEntradaVeiculo(veiculo);
 
             // Act
-            var carroEstacionado = _estacionamento.PesquisaVeiculo(placa);
+            var carroEstacionado = _estacionamento.PesquisaVeiculo(veiculo.IdTicket);
 
             // Assert
-            Assert.Equal(placa, carroEstacionado.Placa);
+            Assert.Contains("### Ticket Estacionamento ###", carroEstacionado.Ticket);
         }
 
         [Theory]

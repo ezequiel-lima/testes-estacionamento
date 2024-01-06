@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
 {
@@ -32,6 +33,7 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
         public void RegistrarEntradaVeiculo(Veiculo veiculo)
         {
             veiculo.HoraEntrada = DateTime.Now;
+            GerarTicket(veiculo);
             this.Veiculos.Add(veiculo);
         }
 
@@ -79,9 +81,9 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
             return informacao;
         }
 
-        public Veiculo PesquisaVeiculo(string placa)
+        public Veiculo PesquisaVeiculo(string idTicket)
         {
-            Veiculo veiculo = veiculos.Where(x => x.Placa == placa).FirstOrDefault();
+            Veiculo veiculo = veiculos.Where(x => x.IdTicket == idTicket).FirstOrDefault();
 
             if (veiculo is not null)
                 return veiculo;
@@ -102,5 +104,20 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
             return null;
         }
 
+        private string GerarTicket(Veiculo veiculo)
+        {
+            veiculo.IdTicket = Guid.NewGuid().ToString().Substring(0, 5);
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.AppendLine("### Ticket Estacionamento ###");
+            stringBuilder.AppendLine($">>> Identificador: {veiculo.IdTicket}");
+            stringBuilder.AppendLine($">>> Data/Hora de Entrada: {DateTime.Now}");
+            stringBuilder.AppendLine($">>> Placa Veiculo: {veiculo.Placa}");
+
+            veiculo.Ticket = stringBuilder.ToString();
+
+            return stringBuilder.ToString();
+        }
     }
 }
