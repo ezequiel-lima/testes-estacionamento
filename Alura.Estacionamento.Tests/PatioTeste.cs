@@ -1,9 +1,11 @@
 ﻿using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace Alura.Estacionamento.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class PatioTeste
     {
         private readonly Operador _operador;

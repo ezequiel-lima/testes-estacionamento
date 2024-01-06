@@ -1,12 +1,12 @@
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
 using System;
-using System.Drawing;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace Alura.Estacionamento.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class VeiculoTeste
     {
         [Fact]
