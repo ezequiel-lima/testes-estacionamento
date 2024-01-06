@@ -6,11 +6,13 @@ namespace Alura.Estacionamento.Tests
 {
     public class PatioTeste
     {
+        private readonly Operador _operador;
         private readonly Patio _estacionamento;
 
         public PatioTeste()
         {
-            _estacionamento = new Patio();
+            _operador = new Operador("Joãozinho");
+            _estacionamento = new Patio(_operador);
         }
 
         [Theory]
